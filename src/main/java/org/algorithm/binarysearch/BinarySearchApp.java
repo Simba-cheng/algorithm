@@ -27,39 +27,34 @@ import java.util.Arrays;
  */
 public class BinarySearchApp {
 
-    private static final int NUMBER_LENGTH_TEST = 10000000;
+    private static final int NUMBER_LENGTH_TEST = 11;
 
-    private static final int[] whiteArrs = new int[NUMBER_LENGTH_TEST];
+    private static final int[] WHITE_ARRS = new int[NUMBER_LENGTH_TEST];
 
     public static void main(String[] args) {
 
-        //构造数组中数据
-        for (int i = 0; i < NUMBER_LENGTH_TEST; i++) {
-            whiteArrs[i] = RandomUtils.nextInt(0, 1000000000);
-        }
-
-        Arrays.sort(whiteArrs);
-        System.out.println("whiteArrs length : " + whiteArrs.length);
-
-        System.out.println();
-        System.out.println("请输入数字：");
+        //构造数据
+        constructionData();
 
         try {
+
+            System.out.println("请输入数字：");
 
             InputStreamReader streamReader = new InputStreamReader(System.in);
             BufferedReader reader = new BufferedReader(streamReader);
             String result = reader.readLine();
 
             //转换
-            if (!NumberUtils.isNumber(result)) {
+            if (!NumberUtils.isCreatable(result)) {
+                System.out.println("请输入有效数字!");
                 return;
             }
             int resultInt = Integer.valueOf(result);
 
             System.out.println();
 
-            int response = rank(resultInt, whiteArrs);
-            System.out.println("response : " + response);
+            int index = rank(resultInt, WHITE_ARRS);
+            System.out.println("index : " + index);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +79,7 @@ public class BinarySearchApp {
     public static int rank(int key, int[] a) {
 
         //记录循环次数
-        int count = 0;
+        int tempCount = 0;
 
         //数组起始下标
         int startIndex = 0;
@@ -96,13 +91,14 @@ public class BinarySearchApp {
         while (startIndex <= endIndex) {
 
             //记录循环次数
-            count++;
+            tempCount++;
 
-            //中间键
+            //中间键值下标
             int mid = startIndex + (endIndex - startIndex) / 2;
 
-            System.out.println("第" + count + "次 ， startIndex:" + startIndex + " endIndex:" + endIndex + " mid:" + mid);
+            System.out.println("第" + tempCount + "次 ， startIndex:" + startIndex + " endIndex:" + endIndex + " mid:" + mid);
 
+            //中间键值 大于 key，修改endIndex，下次扫描左侧子序列
             if (key < a[mid]) {
                 endIndex = mid - 1;
             } else if (key > a[mid]) {
@@ -115,4 +111,18 @@ public class BinarySearchApp {
 
     }
 
+    /**
+     * 构造数据
+     *
+     */
+    public static void constructionData() {
+
+        //构造数组中数据 可能有重复数据，无所谓了...
+        for (int i = 0; i < NUMBER_LENGTH_TEST; i++) {
+            WHITE_ARRS[i] = RandomUtils.nextInt(0, 10000);
+        }
+        //排序
+        Arrays.sort(WHITE_ARRS);
+        System.out.println(Arrays.toString(WHITE_ARRS));
+    }
 }
