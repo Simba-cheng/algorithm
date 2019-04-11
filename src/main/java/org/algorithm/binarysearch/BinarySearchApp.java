@@ -95,11 +95,14 @@ public class BinarySearchApp {
 
             //中间键值下标
             int mid = startIndex + (endIndex - startIndex) / 2;
+            
+            //中间键值下标对应的数字
+            int midValue = a[mid];
 
-            System.out.println("第" + tempCount + "次 ， startIndex:" + startIndex + " endIndex:" + endIndex + " mid:" + mid);
+            System.out.println("第" + tempCount + "次 ， startIndex:" + startIndex + " endIndex:" + endIndex + " mid:" + mid + " midValue:" + midValue);
 
             //中间键值 大于 key，修改endIndex，下次扫描左侧子序列
-            if (key < a[mid]) {
+            if (key < midValue) {
                 endIndex = mid - 1;
             } else if (key > a[mid]) {
                 startIndex = mid + 1;
