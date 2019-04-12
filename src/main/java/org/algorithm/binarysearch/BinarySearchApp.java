@@ -38,13 +38,11 @@ public class BinarySearchApp {
 
         try {
 
+            //入参处理
             System.out.println("请输入数字：");
-
             InputStreamReader streamReader = new InputStreamReader(System.in);
             BufferedReader reader = new BufferedReader(streamReader);
             String result = reader.readLine();
-
-            //转换
             if (!NumberUtils.isCreatable(result)) {
                 System.out.println("请输入有效数字!");
                 return;
@@ -53,6 +51,7 @@ public class BinarySearchApp {
 
             System.out.println();
 
+            //process
             int index = rank(resultInt, WHITE_ARRS);
             System.out.println("index : " + index);
 
@@ -84,7 +83,7 @@ public class BinarySearchApp {
         //数组起始下标
         int startIndex = 0;
 
-        //数组最大长度
+        //数组结束长度(下标)
         int endIndex = a.length - 1;
 
         //被查找的键要么不存在，要么必然存在于a[startIndex...endIndex]之中
@@ -94,8 +93,10 @@ public class BinarySearchApp {
             tempCount++;
 
             //中间键值下标
+            //扫描左侧的子序列，startIndex一直为0，endIndex改变，这样min向左侧移动。
+            //扫描右侧的子序列，stratIndex改变，endIndex改变，这样min向右移动。
             int mid = startIndex + (endIndex - startIndex) / 2;
-            
+
             //中间键值下标对应的数字
             int midValue = a[mid];
 
@@ -116,7 +117,6 @@ public class BinarySearchApp {
 
     /**
      * 构造数据
-     *
      */
     public static void constructionData() {
 
