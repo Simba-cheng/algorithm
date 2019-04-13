@@ -51,7 +51,7 @@ public class BinarySearchApp2 {
         int start = 0;
 
         //结束下标 指向数组待查范围的最后一个元素
-        int end = array.length;
+        int end = array.length - 1;
 
         //可以看做指针
         int middle;
