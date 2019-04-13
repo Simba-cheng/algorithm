@@ -38,16 +38,21 @@ public class BinarySearchApp4 {
 
             int middle = (start + end) / 2;
 
-            if (array[middle] < key) {
+            if (array[middle] <= key) {
                 //右
                 start = middle + 1;
-            } else if (array[middle] > key) {
+            } else if (array[middle] >= key) {
                 //左
                 end = middle - 1;
             }
 
-            if (end >= 0 && array[end] == key) {
-                return end;
+            /**
+             * 第一个判断没啥说的，start下标小于数组总长
+             *
+             * 第二个，判断start下标在array中数值是否等于key，注意是start而不是middle
+             */
+            if (start < array.length && array[start] == key) {
+                return start;
             }
         }
         return -1;
