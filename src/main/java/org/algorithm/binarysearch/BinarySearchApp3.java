@@ -16,7 +16,7 @@ public class BinarySearchApp3 {
     public static void main(String[] args) {
 
         int start = 0;
-        int end = array.length;
+        int end = array.length - 1;
 
         int key = 23;
 
